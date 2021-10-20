@@ -1,29 +1,7 @@
 import unittest
 import statistics
 import math
-import smtplib, ssl
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
-def EmailAlert():
-  port = 587  
-  smtp_server = "smtp.gmail.com"
-  sender_email = "my@gmail.com"
-  receiver_email = "your@gmail.com"
-  password = "password"
-  message = """\
-  Subject: Hi there
-
-  The values from sensor is exceeded the threshold value."""
-
-  context = ssl.create_default_context()
-  with smtplib.SMTP(smtp_server, port) as server:
-      server.ehlo()  # Can be omitted
-      server.starttls(context=context)
-      server.ehlo()  # Can be omitted
-      server.login(sender_email, password)
-      server.sendmail(sender_email, receiver_email, message)
-
+import StatsAlerter
 
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
