@@ -44,7 +44,7 @@ class EmailAlert():
           server.ehlo()
           server.starttls(context=context)
           server.ehlo()
-          server.login(sender_email, password)
+          server.login(sendfrom, password)
           server.sendmail(sendfrom, sendto, mail_content)
       
       
