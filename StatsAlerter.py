@@ -1,3 +1,9 @@
+vimport smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
+
+
 class StatsAlerter():
   def __init__(self, maxThreshold, [emailAlert, ledAlert]):
     self.maxThreshold = maxThreshold
