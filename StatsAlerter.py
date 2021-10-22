@@ -16,7 +16,7 @@ class EmailAlert():
   def __init__(self):
     self.sendto = "ranjethsudhakar@gmail.com" 
     self.sendfrom = "ranjethsundaram@gmail.com"
-    self.password = str(input("Enter the password"))
+    self.password = 'in.bosch.com11'
     
   def construct_message():
     message = '''
