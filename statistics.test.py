@@ -33,18 +33,18 @@ class EmailAlert():
         '''
     return message
   
-    def send_mail():
-      mail_content = construct_message()
-      subject = "Alert: values exceeds"
-      port = 587  
-      smtp_server = "smtp.gmail.com"
-      context = ssl.create_default_context()
-      with smtplib.SMTP(smtp_server, port) as server:
-          server.ehlo()
-          server.starttls(context=context)
-          server.ehlo()
-          server.login(self.sendfrom, self.password)
-          server.sendmail(self.sendfrom, self.sendto, mail_content)
+  def send_mail():
+    mail_content = construct_message()
+    subject = "Alert: values exceeds"
+    port = 587  
+    smtp_server = "smtp.gmail.com"
+    context = ssl.create_default_context()
+    with smtplib.SMTP(smtp_server, port) as server:
+        server.ehlo()
+        server.starttls(context=context)
+        server.ehlo()
+        server.login(self.sendfrom, self.password)
+        server.sendmail(self.sendfrom, self.sendto, mail_content)
 
 class StatsAlerter():
   def __init__(self, maxThreshold, objects):
