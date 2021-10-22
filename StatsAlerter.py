@@ -10,6 +10,12 @@ class StatsAlerter():
     self.emailAlert = objects[0]
     self.ledAlert = objects[1]
     
+  def checkAndAlert(self,values):
+    for val in values:
+      if val > self.maxThreshold:
+        self.emailAlert.send_mail()
+        self.ledAlert.make_led_on()
+    
 
       
       
