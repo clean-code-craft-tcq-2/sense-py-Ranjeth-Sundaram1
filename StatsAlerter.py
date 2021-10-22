@@ -8,9 +8,13 @@ class StatsAlerter():
   def __init__(self, maxThreshold, objects):
     self.maxThreshold = maxThreshold
     self.emailAlert = objects[0]
-    selft.ledAlert = objects[1]
+    self.ledAlert = objects[1]
     
-
+class LEDAlert():
+  def __init__(self):
+    self.AlertValue = 1
+  def make_led_on():
+    print('led is turned ON')
     
 class EmailAlert():
   def __init__(self):
