@@ -1,7 +1,7 @@
 import unittest
 import statistics
 import math
-from StatusAlerter import EmailAlert
+from StatsAlerter import EmailAlert
 import StatsAlerter
 
 
