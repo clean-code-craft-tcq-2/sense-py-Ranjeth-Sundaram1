@@ -1,7 +1,9 @@
 import unittest
 import statistics
 import math
-import StatsAlerter
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 class LEDAlert():
   def __init__(self):
@@ -44,6 +46,18 @@ class EmailAlert():
           server.login(self.sendfrom, self.password)
           server.sendmail(self.sendfrom, self.sendto, mail_content)
 
+class StatsAlerter():
+  def __init__(self, maxThreshold, objects):
+    self.maxThreshold = maxThreshold
+    self.emailAlert = objects[0]
+    self.ledAlert = objects[1]
+    
+  def checkAndAlert(self,values):
+    for val in values:
+      if val > self.maxThreshold:
+        self.emailAlert.send_mail()
+        self.ledAlert.make_led_on()
+          
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
     computedStats = statistics.calculateStats([1.5, 8.9, 3.2, 4.5])
