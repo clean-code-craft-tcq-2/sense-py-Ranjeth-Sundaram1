@@ -5,10 +5,10 @@ from email.mime.multipart import MIMEMultipart
 
 
 class StatsAlerter():
-  def __init__(self, maxThreshold, [emailAlert, ledAlert]):
+  def __init__(self, maxThreshold, objects):
     self.maxThreshold = maxThreshold
-    self.emailAlert = emailAlert
-    selft.ledAlert = ledAlert
+    self.emailAlert = objects[0]
+    selft.ledAlert = objects[1]
     
 
     
