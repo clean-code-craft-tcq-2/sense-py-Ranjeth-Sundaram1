@@ -34,7 +34,7 @@ class EmailAlert():
     return message
   
   def send_mail(self):
-    mail_content = construct_message()
+    mail_content = construct_message(self)
     subject = "Alert: values exceeds"
     port = 587  
     smtp_server = "smtp.gmail.com"
