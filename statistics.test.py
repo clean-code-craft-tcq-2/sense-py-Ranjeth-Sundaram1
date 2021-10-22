@@ -17,7 +17,7 @@ class EmailAlert():
     self.sendfrom = "ranjethsundaram@gmail.com"
     self.password = 'in.bosch.com11'
     
-  def construct_message():
+  def construct_message(self):
     message = '''
           <html>
             <body>
@@ -33,7 +33,7 @@ class EmailAlert():
         '''
     return message
   
-  def send_mail():
+  def send_mail(self):
     mail_content = construct_message()
     subject = "Alert: values exceeds"
     port = 587  
