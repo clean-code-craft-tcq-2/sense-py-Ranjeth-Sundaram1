@@ -14,7 +14,10 @@ class StatsAlerter():
     
 class EmailAlert():
   def __init__(self):
-    pass()
+    self.sendto = "ranjethsudhakar@gmail.com" 
+    self.sendfrom = "ranjethsundaram@gmail.com"
+    self.password = str(input("Enter the password"))
+    
   def construct_message():
     message = '''
           <html>
@@ -33,19 +36,16 @@ class EmailAlert():
   
     def send_mail():
       mail_content = construct_message()
-      sendto = "ranjethsudhakar@gmail.com"
       subject = "Alert: values exceeds"
-      sendfrom = "ranjethsundaram@gmail.com"
       port = 587  
       smtp_server = "smtp.gmail.com"
-      password = str(input("Enter the password"))
       context = ssl.create_default_context()
       with smtplib.SMTP(smtp_server, port) as server:
           server.ehlo()
           server.starttls(context=context)
           server.ehlo()
-          server.login(sendfrom, password)
-          server.sendmail(sendfrom, sendto, mail_content)
+          server.login(self.sendfrom, self.password)
+          server.sendmail(self.sendfrom, self.sendto, mail_content)
       
       
       
