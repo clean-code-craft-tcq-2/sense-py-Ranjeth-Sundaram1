@@ -33,12 +33,12 @@ class EmailAlert():
   
     def send_mail():
       mail_content = construct_message()
-      sendto = "maintainer@gmail.com"
+      sendto = "ranjethsudhakar@gmail.com"
       subject = "Alert: values exceeds"
-      sendfrom = "StatsAlerter@gmail.com"
+      sendfrom = "ranjethsundaram@gmail.com"
       port = 587  
       smtp_server = "smtp.gmail.com"
-      password = "password"
+      password = str(input("Enter the password"))
       context = ssl.create_default_context()
       with smtplib.SMTP(smtp_server, port) as server:
           server.ehlo()
