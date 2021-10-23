@@ -7,13 +7,14 @@ from email.mime.multipart import MIMEMultipart
 
 class LEDAlert():
   def __init__(self):
-    self.AlertValue = 1
+    self.ledGlows = False
   def make_led_on(self):
     print('led is turned ON')
     self.ledGlows = True
     
 class EmailAlert():
   def __init__(self):
+    self.emailSent = False
     self.sendto = ["maintainer@gmail.com"]
     self.sendfrom = "ranjethsundaram@gmail.com"
     self.password = 'password'
