@@ -22,12 +22,12 @@ class EmailAlert():
     msg['subject'] = "Alert: values exceeds"
     mail_content = "The sensor values exceeds the maximum threshold value. Please take necessary actions to avoid problems."
     msg.attach(MIMEText(mail_content,'plain'))
-    server = smtplib.SMTP("smtp.gmail.com",587)
-    server.ehlo()
-    server.starttls()
-    server.login(self.sendfrom, self.password)
-    server.sendmail(self.sendfrom, self.sendto, msg.as_string())
-    server.close()
+    # server = smtplib.SMTP("smtp.gmail.com",587)
+    # server.ehlo()
+    # server.starttls()
+    # server.login(self.sendfrom, self.password)
+    # server.sendmail(self.sendfrom, self.sendto, msg.as_string())
+    # server.close()
         
 class StatsAlerter():
   def __init__(self, maxThreshold, objects):
