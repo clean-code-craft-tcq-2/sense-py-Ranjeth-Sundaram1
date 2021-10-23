@@ -10,6 +10,7 @@ class LEDAlert():
     self.AlertValue = 1
   def make_led_on(self):
     print('led is turned ON')
+    self.ledGlows = True
     
 class EmailAlert():
   def __init__(self):
@@ -22,6 +23,7 @@ class EmailAlert():
     msg['subject'] = "Alert: values exceeds"
     mail_content = "The sensor values exceeds the maximum threshold value. Please take necessary actions to avoid problems."
     msg.attach(MIMEText(mail_content,'plain'))
+    self.emailSent = True
     # server = smtplib.SMTP("smtp.gmail.com",587)
     # server.ehlo()
     # server.starttls()
@@ -39,9 +41,8 @@ class StatsAlerter():
     for val in values:
       if val > self.maxThreshold:
         self.emailAlert.send_mail()
-        self.emailSent = True
         self.ledAlert.make_led_on()
-        self.ledGlows = True
+        
           
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
