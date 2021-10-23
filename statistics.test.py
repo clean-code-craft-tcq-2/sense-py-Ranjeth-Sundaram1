@@ -13,39 +13,22 @@ class LEDAlert():
     
 class EmailAlert():
   def __init__(self):
-    self.sendto = "ranjethsudhakar@gmail.com" 
+    self.sendto = ["ranjethsudhakar@gmail.com"]
     self.sendfrom = "ranjethsundaram@gmail.com"
     self.password = 'in.bosch.com11'
-    
-  def construct_message(self):
-    message = '''
-          <html>
-            <body>
-                <p>Hi,<br/><br/>
-                   The sensor values exceeds the maximum threshold value. Please take necessary actions to avoid problems.
-                <br/>
-                Thank you.<br/>
-                <p>******************* This is an auto generated email. Please do not reply to this mail *******************</p>
-                <br/>
-            <p>Regards,<br/>statsAlerterTeam</p>
-            </body>
-        </html>
-        '''
-    return message
-  
+     
   def send_mail(self):
-    mail_content = EmailAlert.construct_message(self)
-    subject = "Alert: values exceeds"
-    port = 587  
-    smtp_server = "smtp.gmail.com"
-    context = ssl.create_default_context()
-    with smtplib.SMTP(smtp_server, port) as server:
-        server.ehlo()
-        server.starttls(context=context)
-        server.ehlo()
-        server.login(self.sendfrom, self.password)
-        server.sendmail(self.sendfrom, self.sendto, mail_content)
-
+    msg = MIMEMultipart()
+    msg['subject'] = "Alert: values exceeds"
+    mail_content = "The sensor values exceeds the maximum threshold value. Please take necessary actions to avoid problems."
+    msg.attach(MIMEText(mail_content,'plain'))
+    server = smtplib.SMTP("smtp.gmail.com",587)
+    server.ehlo()
+    server.starttls()
+    server.login(self.sendfrom, self.password)
+    server.sendmail(self.sendfrom, self.sendto, msg.as_string())
+    server.close()
+        
 class StatsAlerter():
   def __init__(self, maxThreshold, objects):
     self.maxThreshold = maxThreshold
