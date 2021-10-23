@@ -14,9 +14,9 @@ class LEDAlert():
     
 class EmailAlert():
   def __init__(self):
-    self.sendto = ["ranjethsudhakar@gmail.com"]
+    self.sendto = ["maintainer@gmail.com"]
     self.sendfrom = "ranjethsundaram@gmail.com"
-    self.password = 'in.bosch.com11'
+    self.password = 'password'
      
   def send_mail(self):
     msg = MIMEMultipart()
