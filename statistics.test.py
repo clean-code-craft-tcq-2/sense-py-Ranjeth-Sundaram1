@@ -8,7 +8,7 @@ from email.mime.multipart import MIMEMultipart
 class LEDAlert():
   def __init__(self):
     self.AlertValue = 1
-  def make_led_on():
+  def make_led_on(self):
     print('led is turned ON')
     
 class EmailAlert():
