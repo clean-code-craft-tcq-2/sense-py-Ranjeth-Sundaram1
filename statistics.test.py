@@ -34,7 +34,7 @@ class StatsAlerter():
     self.maxThreshold = maxThreshold
     self.emailAlert = objects[0]
     self.ledAlert = objects[1]
-    
+   
   def checkAndAlert(self,values):
     for val in values:
       if val > self.maxThreshold:
