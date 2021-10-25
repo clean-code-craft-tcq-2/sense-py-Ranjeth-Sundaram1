@@ -1,6 +1,50 @@
 import unittest
 import statistics
+import math
+import smtplib, ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
+class LEDAlert():
+  def __init__(self):
+    self.ledGlows = False
+  def make_led_on(self):
+    print('led is turned ON')
+    self.ledGlows = True
+    
+class EmailAlert():
+  def __init__(self):
+    self.emailSent = False
+    self.sendto = ["maintainer@gmail.com"]
+    self.sendfrom = "ranjethsundaram@gmail.com"
+    self.password = 'password'
+     
+  def send_mail(self):
+    msg = MIMEMultipart()
+    msg['subject'] = "Alert: values exceeds"
+    mail_content = "The sensor values exceeds the maximum threshold value. Please take necessary actions to avoid problems."
+    msg.attach(MIMEText(mail_content,'plain'))
+    self.emailSent = True
+    # server = smtplib.SMTP("smtp.gmail.com",587)
+    # server.ehlo()
+    # server.starttls()
+    # server.login(self.sendfrom, self.password)
+    # server.sendmail(self.sendfrom, self.sendto, msg.as_string())
+    # server.close()
+        
+class StatsAlerter():
+  def __init__(self, maxThreshold, objects):
+    self.maxThreshold = maxThreshold
+    self.emailAlert = objects[0]
+    self.ledAlert = objects[1]
+   
+  def checkAndAlert(self,values):
+    for val in values:
+      if val > self.maxThreshold:
+        self.emailAlert.send_mail()
+        self.ledAlert.make_led_on()
+        
+          
 class StatsTest(unittest.TestCase):
   def test_report_min_max_avg(self):
     computedStats = statistics.calculateStats([1.5, 8.9, 3.2, 4.5])
@@ -14,6 +58,7 @@ class StatsTest(unittest.TestCase):
     # All fields of computedStats (average, max, min) must be
     # nan (not-a-number), as defined in the math package
     # Design the assert here.
+    self.assertTrue((math.isnan(computedStats["avg"]) and math.isnan(computedStats["max"]) and math.isnan(computedStats["min"])), "The given list is not empty")
     # Use nan and isnan in https://docs.python.org/3/library/math.html
 
   def test_raise_alerts_when_max_above_threshold(self):
